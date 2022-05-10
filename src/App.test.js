@@ -1,8 +1,19 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render } from "@testing-library/react";
+import { createMemoryHistory } from "history";
+import { Router } from "react-router-dom";
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+import App from "./App";
+
+describe("Episode", () => {
+  const history = createMemoryHistory();
+
+  it("component fetch data", async () => {
+    const { container } = render(
+      <Router location={history.location} navigator={history}>
+        <App />
+      </Router>
+    );
+
+    expect(container).toBeInTheDocument();
+  });
 });
